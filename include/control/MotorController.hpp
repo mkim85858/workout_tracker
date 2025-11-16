@@ -30,11 +30,8 @@ private:
     void controlLoop();
     void stepCW(int steps);
     void stepCCW(int steps);
-    void step(const std::vector<std::vector<int>>& sequence, int steps);
-
     void setupGPIO();
     void cleanupGPIO();
-    void writeGPIO(size_t idx, int value);
 
     std::string chipName_;
     std::vector<unsigned int> lines_;  // GPIO line offsets on the chip

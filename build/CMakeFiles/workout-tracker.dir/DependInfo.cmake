@@ -8,12 +8,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/mkim858/workout_tracker-master/src/app/App.cpp" "CMakeFiles/workout-tracker.dir/src/app/App.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/app/App.cpp.o.d"
-  "/home/mkim858/workout_tracker-master/src/app/Config.cpp" "CMakeFiles/workout-tracker.dir/src/app/Config.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/app/Config.cpp.o.d"
-  "/home/mkim858/workout_tracker-master/src/comm/BLEClient.cpp" "CMakeFiles/workout-tracker.dir/src/comm/BLEClient.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/comm/BLEClient.cpp.o.d"
-  "/home/mkim858/workout_tracker-master/src/control/MotorController.cpp" "CMakeFiles/workout-tracker.dir/src/control/MotorController.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/control/MotorController.cpp.o.d"
-  "/home/mkim858/workout_tracker-master/src/inference/PoseEstimator.cpp" "CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o.d"
-  "/home/mkim858/workout_tracker-master/src/main.cpp" "CMakeFiles/workout-tracker.dir/src/main.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/main.cpp.o.d"
+  "/home/mkim858/workout_tracker/src/app/App.cpp" "CMakeFiles/workout-tracker.dir/src/app/App.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/app/App.cpp.o.d"
+  "/home/mkim858/workout_tracker/src/control/MotorController.cpp" "CMakeFiles/workout-tracker.dir/src/control/MotorController.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/control/MotorController.cpp.o.d"
+  "/home/mkim858/workout_tracker/src/inference/PoseEstimator.cpp" "CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o.d"
+  "/home/mkim858/workout_tracker/src/main.cpp" "CMakeFiles/workout-tracker.dir/src/main.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links.

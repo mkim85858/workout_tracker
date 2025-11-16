@@ -1,5 +1,4 @@
 #include "app/App.hpp"
-#include "app/Config.hpp"
 #include <csignal>
 #include <atomic>
 #include <iostream>
@@ -13,20 +12,10 @@ static void handle_signal(int) {
 }
 
 int main(int argc, char** argv) {
-    // Config path can be overridden by first arg or APP_CONFIG env.
-    std::string cfg_path = "config/app.yaml";
-    if (const char* envp = std::getenv("APP_CONFIG")) cfg_path = envp;
-    if (argc > 1) cfg_path = argv[1];
+    (void)argc;
+    (void)argv;
 
-    AppConfig cfg;
-    try {
-        cfg = load_config_from_file(cfg_path);
-    } catch (const std::exception& e) {
-        std::cerr << "[fatal] " << e.what() << "\n";
-        return 1;
-    }
-
-    App app(cfg);
+    App app;
     try {
         app.init();
     } catch (const std::exception& e) {
@@ -40,7 +29,6 @@ int main(int argc, char** argv) {
 
     app.start();
 
-    /*
     // For now, simulate a few rep events so you can see output.
     for (int i = 0; i < 50; ++i) {
         RepEvent ev;
@@ -50,7 +38,6 @@ int main(int argc, char** argv) {
         app.onRepDetected(ev);
         std::this_thread::sleep_for(std::chrono::milliseconds(500));
     }
-    */
 
     // Run until Ctrl+C (or systemd stop)
     while (!g_sigint.load()) {

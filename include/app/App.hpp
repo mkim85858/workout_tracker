@@ -1,18 +1,14 @@
 #pragma once
-#include "app/Config.hpp"
-#include "comm/BLEClient.hpp"
 #include "inference/PoseEstimator.hpp"
 #include "control/MotorController.hpp"
 #include <memory>
 #include <atomic>
-#include <functional>
 #include <thread>
 #include <chrono>
 #include <cstdint>
 #include <mutex>
 #include <condition_variable>
 #include <queue>
-#include <string>
 
 struct RepEvent {
     uint64_t ts_ms = 0;
@@ -23,7 +19,7 @@ struct RepEvent {
 
 class App {
 public:
-    explicit App(const AppConfig& cfg);
+    App();
     ~App();
 
     // lifecycle
@@ -41,8 +37,6 @@ public:
 private:
     void loopThreadFunc();
 
-    AppConfig config_;
-
     std::atomic<bool> running_{false};
     std::atomic<bool> stop_requested_{false};
     std::thread loop_thread_;
@@ -53,13 +47,6 @@ private:
     std::queue<RepEvent> rep_queue_;
 
     std::unique_ptr<MotorController> motor_;
-    std::queue<int> motor_queue_;
-    std::mutex motor_mtx_;
-    std::condition_variable motor_cv_;
-
-
-    // ble client
-    std::unique_ptr<BLEClient> ble_client_;
 
     // pose estimator
     std::unique_ptr<PoseEstimator> pose_estimator_;

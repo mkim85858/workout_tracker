@@ -1,29 +1,14 @@
 #include "app/App.hpp"
 #include <iostream>
-#include <iomanip>
-#include <ctime>
+#include <vector>
 
-static uint64_t now_ms() {
-    using namespace std::chrono;
-    return duration_cast<milliseconds>(steady_clock::now().time_since_epoch()).count();
-}
-
-App::App(const AppConfig& cfg) : config_(cfg) {}
+App::App() = default;
 
 App::~App() {
     stop();
 }
 
 void App::init() {
-    // Minimal validation; BLE details will be checked when we wire BLE.
-    if (config_.ble.adapter.empty()) {
-        throw std::runtime_error("config.ble.adapter must not be empty");
-    }
-    // For prototype we just print what we parsed:
-    std::cout << "[app] Config loaded. BLE adapter=" << config_.ble.adapter << "\n";
-    ble_client_ = std::make_unique<BLEClient>(config_.ble);
-    ble_client_->init();
-
     pose_estimator_ = std::make_unique<PoseEstimator>(5005);
     std::vector<unsigned int> pins = {105, 106, 41, 43};
     motor_ = std::make_unique<MotorController>(pins);
@@ -32,8 +17,6 @@ void App::init() {
 void App::start() {
     if (running_.exchange(true)) return;
     stop_requested_ = false;
-
-    ble_client_->start();
 
     pose_estimator_->start();
 
@@ -50,8 +33,7 @@ void App::stop() {
     stop_requested_ = true;
     q_cv_.notify_all();
     if (loop_thread_.joinable()) loop_thread_.join();
-
-    if (ble_client_) ble_client_->stop();
+    
     if (motor_) motor_->stop();
     if (pose_estimator_) pose_estimator_->stop();
 
@@ -82,40 +64,40 @@ void App::loopThreadFunc() {
     // - If events, apply to rep_count and print an update
     auto last_heartbeat = std::chrono::steady_clock::now();
     while (!stop_requested_) {
-        // Wait for event or timeout
+        // Wait for event or timeout so we can also service pose commands.
         std::unique_lock<std::mutex> lk(q_mtx_);
-        q_cv_.wait_for(lk, std::chrono::milliseconds(500), [&]{ return stop_requested_ || !rep_queue_.empty(); });
+        q_cv_.wait_for(lk, std::chrono::milliseconds(500),
+                       [&]{ return stop_requested_ || !rep_queue_.empty(); });
+        if (stop_requested_) break;
 
-        // BLE
-        // Drain a few events quickly
-        int processed = 0;
-        /*
+        // Pull out any pending rep events while holding the lock.
+        std::vector<RepEvent> events;
         while (!rep_queue_.empty()) {
-            RepEvent ev = rep_queue_.front();
+            events.push_back(rep_queue_.front());
             rep_queue_.pop();
-            lk.unlock();
-
-            uint32_t new_total = rep_count_.fetch_add(ev.delta) + ev.delta;
-            std::cout << "[rep] +" << ev.delta << " (exercise " << ev.exercise_id << ") total=" << new_total << "\n";
-            WorkoutData w { 
-                "bench_press", 
-                45.0f, 
-                new_total 
-            };
-            if (ble_client_) ble_client_->sendWorkoutUpdate(w);
-
-            processed++;
-            lk.lock();
         }
         lk.unlock();
-        */
 
-        // POSE ESTIMATOR
-        int cmd;
-        while (pose_estimator_ && pose_estimator_->getNextCommand(cmd)) {
-            motor_->pushCommand(cmd);
+        int processed = 0;
+
+        for (auto& ev : events) {
+            // Update totals and print a simple update.
+            const auto new_total = rep_count_.fetch_add(ev.delta) + ev.delta;
+            ++processed;
+            std::cout << "[app] reps +" << ev.delta << " (exercise "
+                      << ev.exercise_id << ") → total=" << new_total << "\n";
         }
 
+        // Drain pose-estimator commands irrespective of events.
+        int cmd = 0;
+        while (pose_estimator_ && pose_estimator_->getNextCommand(cmd)) {
+            ++processed;
+            if (motor_) {
+                motor_->pushCommand(cmd);
+            } else {
+                std::cerr << "[app] Motor not initialized; dropping cmd " << cmd << "\n";
+            }
+        }
 
         auto now = std::chrono::steady_clock::now();
         if (processed == 0 && now - last_heartbeat > std::chrono::seconds(2)) {

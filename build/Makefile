@@ -57,10 +57,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/mkim858/workout_tracker-master
+CMAKE_SOURCE_DIR = /home/mkim858/workout_tracker
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/mkim858/workout_tracker-master/build
+CMAKE_BINARY_DIR = /home/mkim858/workout_tracker/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -87,9 +87,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mkim858/workout_tracker-master/build/CMakeFiles /home/mkim858/workout_tracker-master/build//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mkim858/workout_tracker/build/CMakeFiles /home/mkim858/workout_tracker/build//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/mkim858/workout_tracker-master/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/mkim858/workout_tracker/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -152,54 +152,6 @@ src/app/App.s: src/app/App.cpp.s
 src/app/App.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/app/App.cpp.s
 .PHONY : src/app/App.cpp.s
-
-src/app/Config.o: src/app/Config.cpp.o
-.PHONY : src/app/Config.o
-
-# target to build an object file
-src/app/Config.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/app/Config.cpp.o
-.PHONY : src/app/Config.cpp.o
-
-src/app/Config.i: src/app/Config.cpp.i
-.PHONY : src/app/Config.i
-
-# target to preprocess a source file
-src/app/Config.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/app/Config.cpp.i
-.PHONY : src/app/Config.cpp.i
-
-src/app/Config.s: src/app/Config.cpp.s
-.PHONY : src/app/Config.s
-
-# target to generate assembly for a file
-src/app/Config.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/app/Config.cpp.s
-.PHONY : src/app/Config.cpp.s
-
-src/comm/BLEClient.o: src/comm/BLEClient.cpp.o
-.PHONY : src/comm/BLEClient.o
-
-# target to build an object file
-src/comm/BLEClient.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/comm/BLEClient.cpp.o
-.PHONY : src/comm/BLEClient.cpp.o
-
-src/comm/BLEClient.i: src/comm/BLEClient.cpp.i
-.PHONY : src/comm/BLEClient.i
-
-# target to preprocess a source file
-src/comm/BLEClient.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/comm/BLEClient.cpp.i
-.PHONY : src/comm/BLEClient.cpp.i
-
-src/comm/BLEClient.s: src/comm/BLEClient.cpp.s
-.PHONY : src/comm/BLEClient.s
-
-# target to generate assembly for a file
-src/comm/BLEClient.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/comm/BLEClient.cpp.s
-.PHONY : src/comm/BLEClient.cpp.s
 
 src/control/MotorController.o: src/control/MotorController.cpp.o
 .PHONY : src/control/MotorController.o
@@ -285,12 +237,6 @@ help:
 	@echo "... src/app/App.o"
 	@echo "... src/app/App.i"
 	@echo "... src/app/App.s"
-	@echo "... src/app/Config.o"
-	@echo "... src/app/Config.i"
-	@echo "... src/app/Config.s"
-	@echo "... src/comm/BLEClient.o"
-	@echo "... src/comm/BLEClient.i"
-	@echo "... src/comm/BLEClient.s"
 	@echo "... src/control/MotorController.o"
 	@echo "... src/control/MotorController.i"
 	@echo "... src/control/MotorController.s"

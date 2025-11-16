@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/mkim858/workout_tracker-master/include
+CXX_INCLUDES = -I/home/mkim858/workout_tracker/include
 
 CXX_FLAGS = -g -fPIE -std=gnu++20
 

@@ -1,10 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/workout-tracker.dir/src/app/App.cpp.o"
   "CMakeFiles/workout-tracker.dir/src/app/App.cpp.o.d"
-  "CMakeFiles/workout-tracker.dir/src/app/Config.cpp.o"
-  "CMakeFiles/workout-tracker.dir/src/app/Config.cpp.o.d"
-  "CMakeFiles/workout-tracker.dir/src/comm/BLEClient.cpp.o"
-  "CMakeFiles/workout-tracker.dir/src/comm/BLEClient.cpp.o.d"
   "CMakeFiles/workout-tracker.dir/src/control/MotorController.cpp.o"
   "CMakeFiles/workout-tracker.dir/src/control/MotorController.cpp.o.d"
   "CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o"
