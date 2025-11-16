@@ -1,7 +1,7 @@
-CMakeFiles/workout-tracker.dir/src/main.cpp.o: \
- /home/mkim858/workout_tracker/src/main.cpp /usr/include/stdc-predef.h \
- /home/mkim858/workout_tracker/include/app/App.hpp \
- /home/mkim858/workout_tracker/include/inference/PoseEstimator.hpp \
+CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o: \
+ /home/mkim858/workout_tracker/src/control/StepperController.cpp \
+ /usr/include/stdc-predef.h \
+ /home/mkim858/workout_tracker/include/control/StepperController.hpp \
  /usr/include/c++/11/thread /usr/include/c++/11/compare \
  /usr/include/c++/11/concepts /usr/include/c++/11/type_traits \
  /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h \
@@ -196,7 +196,6 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/bits/stl_queue.h \
  /usr/include/c++/11/mutex /usr/include/c++/11/bits/unique_lock.h \
- /home/mkim858/workout_tracker/include/control/StepperController.hpp \
  /usr/include/c++/11/condition_variable \
  /usr/include/c++/11/bits/shared_ptr.h \
  /usr/include/c++/11/bits/shared_ptr_base.h \
@@ -204,40 +203,18 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: \
  /usr/include/c++/11/ext/aligned_buffer.h \
  /usr/include/c++/11/ext/concurrence.h /usr/include/gpiod.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
- /usr/include/c++/11/stdlib.h \
- /home/mkim858/workout_tracker/include/control/ServoController.hpp \
- /usr/include/c++/11/memory \
- /usr/include/c++/11/bits/stl_raw_storage_iter.h \
- /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
- /usr/include/c++/11/bits/shared_ptr_atomic.h \
- /usr/include/c++/11/backward/auto_ptr.h \
- /usr/include/c++/11/bits/ranges_uninitialized.h \
+ /usr/include/c++/11/stdlib.h /usr/include/c++/11/iostream \
+ /usr/include/c++/11/istream /usr/include/c++/11/bits/istream.tcc \
+ /usr/include/c++/11/algorithm /usr/include/c++/11/bits/ranges_algo.h \
  /usr/include/c++/11/bits/ranges_algobase.h /usr/include/c++/11/iterator \
  /usr/include/c++/11/bits/stream_iterator.h \
- /usr/include/c++/11/bits/uses_allocator_args.h \
- /usr/include/c++/11/pstl/glue_memory_defs.h \
- /usr/include/c++/11/pstl/execution_defs.h /usr/include/c++/11/csignal \
- /usr/include/signal.h \
- /usr/include/x86_64-linux-gnu/bits/signum-generic.h \
- /usr/include/x86_64-linux-gnu/bits/signum-arch.h \
- /usr/include/x86_64-linux-gnu/bits/types/sig_atomic_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/siginfo_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/__sigval_t.h \
- /usr/include/x86_64-linux-gnu/bits/siginfo-arch.h \
- /usr/include/x86_64-linux-gnu/bits/siginfo-consts.h \
- /usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h \
- /usr/include/x86_64-linux-gnu/bits/types/sigval_t.h \
- /usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h \
- /usr/include/x86_64-linux-gnu/bits/sigevent-consts.h \
- /usr/include/x86_64-linux-gnu/bits/sigaction.h \
- /usr/include/x86_64-linux-gnu/bits/sigcontext.h \
- /usr/include/x86_64-linux-gnu/bits/types/stack_t.h \
- /usr/include/x86_64-linux-gnu/sys/ucontext.h \
- /usr/include/x86_64-linux-gnu/bits/sigstack.h \
- /usr/include/x86_64-linux-gnu/bits/sigstksz.h \
- /usr/include/x86_64-linux-gnu/bits/ss_flags.h \
- /usr/include/x86_64-linux-gnu/bits/types/struct_sigstack.h \
- /usr/include/x86_64-linux-gnu/bits/sigthread.h \
- /usr/include/x86_64-linux-gnu/bits/signal_ext.h \
- /usr/include/c++/11/iostream /usr/include/c++/11/istream \
- /usr/include/c++/11/bits/istream.tcc
+ /usr/include/c++/11/bits/ranges_util.h \
+ /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+ /usr/include/c++/11/functional /usr/include/c++/11/bits/std_function.h \
+ /usr/include/c++/11/unordered_map /usr/include/c++/11/bits/hashtable.h \
+ /usr/include/c++/11/bits/hashtable_policy.h \
+ /usr/include/c++/11/bits/enable_special_members.h \
+ /usr/include/c++/11/bits/node_handle.h \
+ /usr/include/c++/11/bits/unordered_map.h \
+ /usr/include/c++/11/bits/erase_if.h \
+ /usr/include/c++/11/pstl/execution_defs.h

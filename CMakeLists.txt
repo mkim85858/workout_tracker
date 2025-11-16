@@ -9,7 +9,8 @@ add_executable(workout-tracker
   src/main.cpp
   src/app/App.cpp
   src/inference/PoseEstimator.cpp
-  src/control/MotorController.cpp
+  src/control/StepperController.cpp
+  src/control/ServoController.cpp
 )
 
 target_include_directories(workout-tracker PRIVATE include)

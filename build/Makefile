@@ -153,29 +153,53 @@ src/app/App.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/app/App.cpp.s
 .PHONY : src/app/App.cpp.s
 
-src/control/MotorController.o: src/control/MotorController.cpp.o
-.PHONY : src/control/MotorController.o
+src/control/ServoController.o: src/control/ServoController.cpp.o
+.PHONY : src/control/ServoController.o
 
 # target to build an object file
-src/control/MotorController.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/control/MotorController.cpp.o
-.PHONY : src/control/MotorController.cpp.o
+src/control/ServoController.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o
+.PHONY : src/control/ServoController.cpp.o
 
-src/control/MotorController.i: src/control/MotorController.cpp.i
-.PHONY : src/control/MotorController.i
+src/control/ServoController.i: src/control/ServoController.cpp.i
+.PHONY : src/control/ServoController.i
 
 # target to preprocess a source file
-src/control/MotorController.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/control/MotorController.cpp.i
-.PHONY : src/control/MotorController.cpp.i
+src/control/ServoController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.i
+.PHONY : src/control/ServoController.cpp.i
 
-src/control/MotorController.s: src/control/MotorController.cpp.s
-.PHONY : src/control/MotorController.s
+src/control/ServoController.s: src/control/ServoController.cpp.s
+.PHONY : src/control/ServoController.s
 
 # target to generate assembly for a file
-src/control/MotorController.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/control/MotorController.cpp.s
-.PHONY : src/control/MotorController.cpp.s
+src/control/ServoController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.s
+.PHONY : src/control/ServoController.cpp.s
+
+src/control/StepperController.o: src/control/StepperController.cpp.o
+.PHONY : src/control/StepperController.o
+
+# target to build an object file
+src/control/StepperController.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o
+.PHONY : src/control/StepperController.cpp.o
+
+src/control/StepperController.i: src/control/StepperController.cpp.i
+.PHONY : src/control/StepperController.i
+
+# target to preprocess a source file
+src/control/StepperController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.i
+.PHONY : src/control/StepperController.cpp.i
+
+src/control/StepperController.s: src/control/StepperController.cpp.s
+.PHONY : src/control/StepperController.s
+
+# target to generate assembly for a file
+src/control/StepperController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.s
+.PHONY : src/control/StepperController.cpp.s
 
 src/inference/PoseEstimator.o: src/inference/PoseEstimator.cpp.o
 .PHONY : src/inference/PoseEstimator.o
@@ -237,9 +261,12 @@ help:
 	@echo "... src/app/App.o"
 	@echo "... src/app/App.i"
 	@echo "... src/app/App.s"
-	@echo "... src/control/MotorController.o"
-	@echo "... src/control/MotorController.i"
-	@echo "... src/control/MotorController.s"
+	@echo "... src/control/ServoController.o"
+	@echo "... src/control/ServoController.i"
+	@echo "... src/control/ServoController.s"
+	@echo "... src/control/StepperController.o"
+	@echo "... src/control/StepperController.i"
+	@echo "... src/control/StepperController.s"
 	@echo "... src/inference/PoseEstimator.o"
 	@echo "... src/inference/PoseEstimator.i"
 	@echo "... src/inference/PoseEstimator.s"

@@ -11,7 +11,8 @@ App::~App() {
 void App::init() {
     pose_estimator_ = std::make_unique<PoseEstimator>(5005);
     std::vector<unsigned int> pins = {105, 106, 41, 43};
-    motor_ = std::make_unique<MotorController>(pins);
+    stepper_ = std::make_unique<StepperController>(pins);
+    servo_ = std::make_unique<ServoController>("/sys/class/pwm/pwmchip0", 0);
 }
 
 void App::start() {
@@ -19,8 +20,8 @@ void App::start() {
     stop_requested_ = false;
 
     pose_estimator_->start();
-
-    motor_->start();
+    if (stepper_) stepper_->start();
+    if (servo_) servo_->start();
 
     // Launch a simple loop thread.
     loop_thread_ = std::thread(&App::loopThreadFunc, this);
@@ -34,7 +35,8 @@ void App::stop() {
     q_cv_.notify_all();
     if (loop_thread_.joinable()) loop_thread_.join();
     
-    if (motor_) motor_->stop();
+    if (servo_) servo_->stop();
+    if (stepper_) stepper_->stop();
     if (pose_estimator_) pose_estimator_->stop();
 
     std::cout << "[app] Stopped.\n";
@@ -92,10 +94,27 @@ void App::loopThreadFunc() {
         int cmd = 0;
         while (pose_estimator_ && pose_estimator_->getNextCommand(cmd)) {
             ++processed;
-            if (motor_) {
-                motor_->pushCommand(cmd);
-            } else {
-                std::cerr << "[app] Motor not initialized; dropping cmd " << cmd << "\n";
+            switch (cmd) {
+                case 0:
+                case 1:
+                    if (stepper_) {
+                        stepper_->pushCommand(cmd);
+                    } else {
+                        std::cerr << "[app] Stepper not ready; drop cmd " << cmd << "\n";
+                    }
+                    break;
+                case 2:
+                case 3:
+                case 4:
+                    if (servo_) {
+                        servo_->pushCommand(cmd);
+                    } else {
+                        std::cerr << "[app] Servo not ready; drop cmd " << cmd << "\n";
+                    }
+                    break;
+                default:
+                    std::cerr << "[app] Unknown pose cmd " << cmd << "\n";
+                    break;
             }
         }
 

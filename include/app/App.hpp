@@ -1,6 +1,7 @@
 #pragma once
 #include "inference/PoseEstimator.hpp"
-#include "control/MotorController.hpp"
+#include "control/StepperController.hpp"
+#include "control/ServoController.hpp"
 #include <memory>
 #include <atomic>
 #include <thread>
@@ -46,8 +47,8 @@ private:
     std::condition_variable q_cv_;
     std::queue<RepEvent> rep_queue_;
 
-    std::unique_ptr<MotorController> motor_;
-
+    std::unique_ptr<StepperController> stepper_;
+    std::unique_ptr<ServoController> servo_;
     // pose estimator
     std::unique_ptr<PoseEstimator> pose_estimator_;
 

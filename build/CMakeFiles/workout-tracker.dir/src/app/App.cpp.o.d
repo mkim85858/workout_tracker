@@ -196,7 +196,7 @@ CMakeFiles/workout-tracker.dir/src/app/App.cpp.o: \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/bits/stl_queue.h \
  /usr/include/c++/11/mutex /usr/include/c++/11/bits/unique_lock.h \
- /home/mkim858/workout_tracker/include/control/MotorController.hpp \
+ /home/mkim858/workout_tracker/include/control/StepperController.hpp \
  /usr/include/c++/11/condition_variable \
  /usr/include/c++/11/bits/shared_ptr.h \
  /usr/include/c++/11/bits/shared_ptr_base.h \
@@ -204,7 +204,9 @@ CMakeFiles/workout-tracker.dir/src/app/App.cpp.o: \
  /usr/include/c++/11/ext/aligned_buffer.h \
  /usr/include/c++/11/ext/concurrence.h /usr/include/gpiod.h \
  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
- /usr/include/c++/11/stdlib.h /usr/include/c++/11/memory \
+ /usr/include/c++/11/stdlib.h \
+ /home/mkim858/workout_tracker/include/control/ServoController.hpp \
+ /usr/include/c++/11/memory \
  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
  /usr/include/c++/11/bits/align.h /usr/include/c++/11/bit \
  /usr/include/c++/11/bits/shared_ptr_atomic.h \

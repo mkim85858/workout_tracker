@@ -1,8 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/workout-tracker.dir/src/app/App.cpp.o"
   "CMakeFiles/workout-tracker.dir/src/app/App.cpp.o.d"
-  "CMakeFiles/workout-tracker.dir/src/control/MotorController.cpp.o"
-  "CMakeFiles/workout-tracker.dir/src/control/MotorController.cpp.o.d"
+  "CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o"
+  "CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o.d"
+  "CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o"
+  "CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o.d"
   "CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o"
   "CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o.d"
   "CMakeFiles/workout-tracker.dir/src/main.cpp.o"

@@ -5,36 +5,36 @@
 #include <mutex>
 #include <condition_variable>
 #include <vector>
+#include <string>
 #include <gpiod.h>
 
 /**
- * MotorController controls a 4-wire motor through a ULN2003 driver
- * using the Jetson libgpiod character-device GPIO interface.
+ * StepperController drives a 4-wire stepper via a ULN2003 driver using libgpiod.
  *
  * cmd = 0 → rotate clockwise
  * cmd = 1 → rotate counter-clockwise
  */
-class MotorController {
+class StepperController {
 public:
-    MotorController(const std::vector<unsigned int>& gpioLines,
+    StepperController(const std::vector<unsigned int>& gpioLines,
                       const std::string& chipName = "gpiochip0");
-    ~MotorController();
+    ~StepperController();
 
     void start();
     void stop();
 
-    // Called by App (via inference) to queue new motion commands
     void pushCommand(int cmd);
 
 private:
     void controlLoop();
     void stepCW(int steps);
     void stepCCW(int steps);
+
     void setupGPIO();
     void cleanupGPIO();
 
     std::string chipName_;
-    std::vector<unsigned int> lines_;  // GPIO line offsets on the chip
+    std::vector<unsigned int> lines_;
     gpiod_chip* chip_ = nullptr;
     std::vector<gpiod_line*> handles_;
 
