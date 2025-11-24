@@ -97,24 +97,10 @@ CMakeFiles/workout-tracker.dir/src/app/App.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/workout-tracker.dir/src/app/App.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mkim858/workout_tracker/src/app/App.cpp -o CMakeFiles/workout-tracker.dir/src/app/App.cpp.s
 
-CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o: CMakeFiles/workout-tracker.dir/flags.make
-CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o: ../src/inference/PoseEstimator.cpp
-CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o: CMakeFiles/workout-tracker.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mkim858/workout_tracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o -MF CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o.d -o CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o -c /home/mkim858/workout_tracker/src/inference/PoseEstimator.cpp
-
-CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mkim858/workout_tracker/src/inference/PoseEstimator.cpp > CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.i
-
-CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mkim858/workout_tracker/src/inference/PoseEstimator.cpp -o CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.s
-
 CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o: CMakeFiles/workout-tracker.dir/flags.make
 CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o: ../src/control/StepperController.cpp
 CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o: CMakeFiles/workout-tracker.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mkim858/workout_tracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mkim858/workout_tracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o -MF CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o.d -o CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o -c /home/mkim858/workout_tracker/src/control/StepperController.cpp
 
 CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.i: cmake_force
@@ -128,7 +114,7 @@ CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.s: cmake_force
 CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o: CMakeFiles/workout-tracker.dir/flags.make
 CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o: ../src/control/ServoController.cpp
 CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o: CMakeFiles/workout-tracker.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mkim858/workout_tracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mkim858/workout_tracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o -MF CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o.d -o CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o -c /home/mkim858/workout_tracker/src/control/ServoController.cpp
 
 CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.i: cmake_force
@@ -143,7 +129,6 @@ CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.s: cmake_force
 workout__tracker_OBJECTS = \
 "CMakeFiles/workout-tracker.dir/src/main.cpp.o" \
 "CMakeFiles/workout-tracker.dir/src/app/App.cpp.o" \
-"CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o" \
 "CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o" \
 "CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o"
 
@@ -152,12 +137,11 @@ workout__tracker_EXTERNAL_OBJECTS =
 
 workout-tracker: CMakeFiles/workout-tracker.dir/src/main.cpp.o
 workout-tracker: CMakeFiles/workout-tracker.dir/src/app/App.cpp.o
-workout-tracker: CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o
 workout-tracker: CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o
 workout-tracker: CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o
 workout-tracker: CMakeFiles/workout-tracker.dir/build.make
 workout-tracker: CMakeFiles/workout-tracker.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mkim858/workout_tracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable workout-tracker"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mkim858/workout_tracker/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable workout-tracker"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/workout-tracker.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

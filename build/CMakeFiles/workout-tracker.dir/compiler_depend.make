@@ -4,7 +4,7 @@
 CMakeFiles/workout-tracker.dir/src/app/App.cpp.o: ../src/app/App.cpp \
   /usr/include/stdc-predef.h \
   ../include/app/App.hpp \
-  ../include/inference/PoseEstimator.hpp \
+  ../include/control/StepperController.hpp \
   /usr/include/c++/11/thread \
   /usr/include/c++/11/compare \
   /usr/include/c++/11/concepts \
@@ -255,7 +255,6 @@ CMakeFiles/workout-tracker.dir/src/app/App.cpp.o: ../src/app/App.cpp \
   /usr/include/c++/11/bits/stl_queue.h \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/bits/unique_lock.h \
-  ../include/control/MotorController.hpp \
   /usr/include/c++/11/condition_variable \
   /usr/include/c++/11/bits/shared_ptr.h \
   /usr/include/c++/11/bits/shared_ptr_base.h \
@@ -281,7 +280,30 @@ CMakeFiles/workout-tracker.dir/src/app/App.cpp.o: ../src/app/App.cpp \
   /usr/include/c++/11/pstl/execution_defs.h \
   /usr/include/c++/11/iostream \
   /usr/include/c++/11/istream \
-  /usr/include/c++/11/bits/istream.tcc
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/arpa/inet.h \
+  /usr/include/netinet/in.h \
+  /usr/include/x86_64-linux-gnu/sys/socket.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
+  /usr/include/x86_64-linux-gnu/bits/socket.h \
+  /usr/include/x86_64-linux-gnu/bits/socket_type.h \
+  /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
+  /usr/include/x86_64-linux-gnu/asm/socket.h \
+  /usr/include/asm-generic/socket.h \
+  /usr/include/linux/posix_types.h \
+  /usr/include/linux/stddef.h \
+  /usr/include/x86_64-linux-gnu/asm/posix_types.h \
+  /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
+  /usr/include/asm-generic/posix_types.h \
+  /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
+  /usr/include/asm-generic/bitsperlong.h \
+  /usr/include/x86_64-linux-gnu/asm/sockios.h \
+  /usr/include/asm-generic/sockios.h \
+  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
+  /usr/include/x86_64-linux-gnu/bits/in.h \
+  /usr/include/c++/11/cstring \
+  /usr/include/string.h \
+  /usr/include/strings.h
 
 CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o: ../src/control/ServoController.cpp \
   /usr/include/stdc-predef.h \
@@ -568,9 +590,9 @@ CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o: ../src/control
   /usr/include/c++/11/bits/fstream.tcc \
   /usr/include/c++/11/iostream
 
-CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o: ../src/inference/PoseEstimator.cpp \
+CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o: ../src/control/StepperController.cpp \
   /usr/include/stdc-predef.h \
-  ../include/inference/PoseEstimator.hpp \
+  ../include/control/StepperController.hpp \
   /usr/include/c++/11/thread \
   /usr/include/c++/11/compare \
   /usr/include/c++/11/concepts \
@@ -821,37 +843,64 @@ CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o: ../src/inferen
   /usr/include/c++/11/bits/stl_queue.h \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/bits/unique_lock.h \
+  /usr/include/c++/11/condition_variable \
+  /usr/include/c++/11/bits/shared_ptr.h \
+  /usr/include/c++/11/bits/shared_ptr_base.h \
+  /usr/include/c++/11/bits/allocated_ptr.h \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/ext/concurrence.h \
+  /usr/include/gpiod.h \
+  /usr/lib/gcc/x86_64-linux-gnu/11/include/stdbool.h \
+  /usr/include/c++/11/stdlib.h \
   /usr/include/c++/11/iostream \
   /usr/include/c++/11/istream \
   /usr/include/c++/11/bits/istream.tcc \
-  /usr/include/c++/11/cstring \
-  /usr/include/string.h \
-  /usr/include/strings.h \
-  /usr/include/arpa/inet.h \
-  /usr/include/netinet/in.h \
-  /usr/include/x86_64-linux-gnu/sys/socket.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_iovec.h \
-  /usr/include/x86_64-linux-gnu/bits/socket.h \
-  /usr/include/x86_64-linux-gnu/bits/socket_type.h \
-  /usr/include/x86_64-linux-gnu/bits/sockaddr.h \
-  /usr/include/x86_64-linux-gnu/asm/socket.h \
-  /usr/include/asm-generic/socket.h \
-  /usr/include/linux/posix_types.h \
-  /usr/include/linux/stddef.h \
-  /usr/include/x86_64-linux-gnu/asm/posix_types.h \
-  /usr/include/x86_64-linux-gnu/asm/posix_types_64.h \
-  /usr/include/asm-generic/posix_types.h \
-  /usr/include/x86_64-linux-gnu/asm/bitsperlong.h \
-  /usr/include/asm-generic/bitsperlong.h \
-  /usr/include/x86_64-linux-gnu/asm/sockios.h \
-  /usr/include/asm-generic/sockios.h \
-  /usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h \
-  /usr/include/x86_64-linux-gnu/bits/in.h
+  /usr/include/c++/11/algorithm \
+  /usr/include/c++/11/bits/ranges_algo.h \
+  /usr/include/c++/11/bits/ranges_algobase.h \
+  /usr/include/c++/11/iterator \
+  /usr/include/c++/11/bits/stream_iterator.h \
+  /usr/include/c++/11/bits/ranges_util.h \
+  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/enable_special_members.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/include/c++/11/bits/erase_if.h \
+  /usr/include/c++/11/pstl/execution_defs.h \
+  /usr/include/c++/11/cmath \
+  /usr/include/math.h \
+  /usr/include/x86_64-linux-gnu/bits/math-vector.h \
+  /usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h \
+  /usr/include/x86_64-linux-gnu/bits/flt-eval-method.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-logb.h \
+  /usr/include/x86_64-linux-gnu/bits/fp-fast.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls.h \
+  /usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h \
+  /usr/include/x86_64-linux-gnu/bits/iscanonical.h \
+  /usr/include/c++/11/bits/specfun.h \
+  /usr/include/c++/11/tr1/gamma.tcc \
+  /usr/include/c++/11/tr1/special_function_util.h \
+  /usr/include/c++/11/tr1/bessel_function.tcc \
+  /usr/include/c++/11/tr1/beta_function.tcc \
+  /usr/include/c++/11/tr1/ell_integral.tcc \
+  /usr/include/c++/11/tr1/exp_integral.tcc \
+  /usr/include/c++/11/tr1/hypergeometric.tcc \
+  /usr/include/c++/11/tr1/legendre_function.tcc \
+  /usr/include/c++/11/tr1/modified_bessel_func.tcc \
+  /usr/include/c++/11/tr1/poly_hermite.tcc \
+  /usr/include/c++/11/tr1/poly_laguerre.tcc \
+  /usr/include/c++/11/tr1/riemann_zeta.tcc
 
 CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/stdc-predef.h \
   ../include/app/App.hpp \
-  ../include/inference/PoseEstimator.hpp \
+  ../include/control/StepperController.hpp \
   /usr/include/c++/11/thread \
   /usr/include/c++/11/compare \
   /usr/include/c++/11/concepts \
@@ -1102,7 +1151,6 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
   /usr/include/c++/11/bits/stl_queue.h \
   /usr/include/c++/11/mutex \
   /usr/include/c++/11/bits/unique_lock.h \
-  ../include/control/MotorController.hpp \
   /usr/include/c++/11/condition_variable \
   /usr/include/c++/11/bits/shared_ptr.h \
   /usr/include/c++/11/bits/shared_ptr_base.h \
@@ -1168,8 +1216,6 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/sigevent-consts.h:
 
-/usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h:
-
 /usr/include/x86_64-linux-gnu/bits/siginfo-consts.h:
 
 /usr/include/x86_64-linux-gnu/bits/siginfo-arch.h:
@@ -1180,33 +1226,49 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 ../src/main.cpp:
 
-/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
+/usr/include/c++/11/tr1/riemann_zeta.tcc:
 
-/usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h:
+/usr/include/c++/11/tr1/poly_hermite.tcc:
 
-/usr/include/asm-generic/sockios.h:
+/usr/include/c++/11/tr1/modified_bessel_func.tcc:
 
-/usr/include/x86_64-linux-gnu/asm/posix_types.h:
+/usr/include/c++/11/tr1/hypergeometric.tcc:
 
-/usr/include/linux/posix_types.h:
+/usr/include/c++/11/tr1/exp_integral.tcc:
 
-/usr/include/x86_64-linux-gnu/bits/sockaddr.h:
+/usr/include/c++/11/tr1/ell_integral.tcc:
 
-/usr/include/x86_64-linux-gnu/bits/socket_type.h:
+/usr/include/c++/11/tr1/bessel_function.tcc:
 
-/usr/include/x86_64-linux-gnu/bits/socket.h:
+/usr/include/x86_64-linux-gnu/bits/siginfo-consts-arch.h:
 
-/usr/include/netinet/in.h:
+/usr/include/c++/11/tr1/special_function_util.h:
 
-/usr/include/arpa/inet.h:
+/usr/include/c++/11/bits/specfun.h:
 
-/usr/include/signal.h:
+/usr/include/x86_64-linux-gnu/bits/iscanonical.h:
 
-/usr/include/strings.h:
+/usr/include/x86_64-linux-gnu/bits/mathcalls.h:
 
-/usr/include/asm-generic/posix_types.h:
+/usr/include/x86_64-linux-gnu/bits/mathcalls-helper-functions.h:
 
-/usr/include/c++/11/bits/fstream.tcc:
+/usr/include/x86_64-linux-gnu/bits/fp-logb.h:
+
+/usr/include/x86_64-linux-gnu/bits/flt-eval-method.h:
+
+/usr/include/x86_64-linux-gnu/bits/math-vector.h:
+
+/usr/include/c++/11/bits/unordered_map.h:
+
+/usr/include/c++/11/bits/hashtable_policy.h:
+
+/usr/include/c++/11/bits/hashtable.h:
+
+/usr/include/c++/11/unordered_map:
+
+/usr/include/c++/11/algorithm:
+
+../src/control/StepperController.cpp:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
 
@@ -1238,9 +1300,43 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 ../src/control/ServoController.cpp:
 
+/usr/include/signal.h:
+
+/usr/include/strings.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/sigevent_t.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_osockaddr.h:
+
+/usr/include/asm-generic/sockios.h:
+
+/usr/include/c++/11/bits/fstream.tcc:
+
+/usr/include/asm-generic/posix_types.h:
+
+/usr/include/c++/11/bits/ranges_util.h:
+
+/usr/include/x86_64-linux-gnu/asm/posix_types.h:
+
+/usr/include/linux/posix_types.h:
+
+/usr/include/x86_64-linux-gnu/bits/sockaddr.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket_type.h:
+
+/usr/include/x86_64-linux-gnu/bits/socket.h:
+
+/usr/include/netinet/in.h:
+
+/usr/include/arpa/inet.h:
+
 /usr/include/c++/11/bits/istream.tcc:
 
 /usr/include/c++/11/istream:
+
+/usr/include/x86_64-linux-gnu/bits/fp-fast.h:
+
+/usr/include/c++/11/bits/node_handle.h:
 
 /usr/include/c++/11/iostream:
 
@@ -1276,6 +1372,8 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/exception:
 
+/usr/include/c++/11/pstl/glue_algorithm_defs.h:
+
 /usr/include/c++/11/stdexcept:
 
 /usr/include/x86_64-linux-gnu/bits/types/mbstate_t.h:
@@ -1283,8 +1381,6 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
 /usr/include/wchar.h:
 
@@ -1301,6 +1397,8 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/bits/stl_vector.h:
 
 /usr/include/c++/11/semaphore:
+
+/usr/include/c++/11/tr1/poly_laguerre.tcc:
 
 /usr/include/c++/11/bits/std_mutex.h:
 
@@ -1354,9 +1452,9 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
 
-/usr/include/c++/11/array:
+/usr/include/c++/11/tr1/beta_function.tcc:
 
-/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+/usr/include/c++/11/array:
 
 /usr/include/asm-generic/errno-base.h:
 
@@ -1374,7 +1472,11 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/errno.h:
 
+/usr/include/c++/11/functional:
+
 /usr/include/linux/errno.h:
+
+/usr/include/c++/11/tr1/legendre_function.tcc:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++config.h:
 
@@ -1406,21 +1508,19 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/pthread.h:
 
-/usr/include/x86_64-linux-gnu/asm/sockios.h:
+/usr/include/math.h:
 
 /usr/include/c++/11/cstring:
 
+/usr/include/x86_64-linux-gnu/asm/sockios.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+
+/usr/include/c++/11/bits/std_function.h:
 
 /usr/include/c++/11/bits/stl_tempbuf.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
-
-/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
-
-/usr/include/c++/11/mutex:
-
-/usr/include/c++/11/ext/numeric_traits.h:
 
 /usr/include/c++/11/utility:
 
@@ -1430,6 +1530,8 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/pstl/pstl_config.h:
 
+/usr/include/c++/11/cmath:
+
 /usr/include/c++/11/bits/allocator.h:
 
 /usr/include/wctype.h:
@@ -1438,21 +1540,15 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
-/usr/include/c++/11/bits/shared_ptr_base.h:
+/usr/include/x86_64-linux-gnu/bits/types.h:
+
+/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
 
 /usr/include/linux/limits.h:
 
 /usr/include/c++/11/bits/basic_string.h:
 
-../include/inference/PoseEstimator.hpp:
-
-/usr/include/x86_64-linux-gnu/bits/types.h:
-
-/usr/include/x86_64-linux-gnu/bits/stdint-intn.h:
-
-/usr/include/c++/11/bits/atomic_base.h:
-
-../include/app/App.hpp:
+/usr/include/c++/11/bits/shared_ptr_base.h:
 
 /usr/include/c++/11/ext/aligned_buffer.h:
 
@@ -1477,6 +1573,26 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
 
 /usr/include/time.h:
+
+/usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
+
+/usr/include/c++/11/mutex:
+
+../include/app/App.hpp:
+
+/usr/include/c++/11/bits/atomic_base.h:
+
+/usr/include/c++/11/ext/numeric_traits.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
+
+/usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+
+../include/control/StepperController.hpp:
+
+/usr/include/c++/11/locale:
+
+/usr/include/ctype.h:
 
 /usr/include/c++/11/compare:
 
@@ -1512,6 +1628,8 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
 
+/usr/include/stdio.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/long-double.h:
@@ -1538,6 +1656,8 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/tuple:
 
+/usr/include/c++/11/tr1/gamma.tcc:
+
 /usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
@@ -1558,9 +1678,9 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/bits/atomic_lockfree_defines.h:
 
-/usr/include/string.h:
-
 /usr/include/c++/11/codecvt:
+
+/usr/include/string.h:
 
 /usr/include/c++/11/bits/streambuf.tcc:
 
@@ -1600,6 +1720,8 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/ext/atomicity.h:
 
+/usr/include/x86_64-linux-gnu/bits/mathcalls-narrow.h:
+
 /usr/include/x86_64-linux-gnu/bits/in.h:
 
 /usr/include/c++/11/stop_token:
@@ -1630,9 +1752,13 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/new:
 
+/usr/include/c++/11/bits/ranges_algo.h:
+
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
 /usr/include/c++/11/bits/stl_iterator.h:
+
+/usr/include/x86_64-linux-gnu/bits/libm-simd-decl-stubs.h:
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/stddef.h:
 
@@ -1694,10 +1820,6 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/c++/11/cctype:
 
-/usr/include/c++/11/locale:
-
-/usr/include/ctype.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/__fpos_t.h:
 
 /usr/include/c++/11/bits/ostream_insert.h:
@@ -1713,6 +1835,8 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/stdlib.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
+
+/usr/include/c++/11/bits/erase_if.h:
 
 /usr/include/stdint.h:
 
@@ -1808,13 +1932,13 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/ctype_inline.h:
 
-../src/inference/PoseEstimator.cpp:
-
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
 /usr/include/c++/11/bits/this_thread_sleep.h:
 
 /usr/include/c++/11/bits/locale_facets.tcc:
+
+/usr/include/c++/11/bits/enable_special_members.h:
 
 /usr/include/c++/11/bits/codecvt.h:
 
@@ -1853,7 +1977,3 @@ CMakeFiles/workout-tracker.dir/src/main.cpp.o: ../src/main.cpp \
 /usr/include/c++/11/bits/uses_allocator.h:
 
 /usr/include/c++/11/bits/unique_lock.h:
-
-/usr/include/stdio.h:
-
-../include/control/MotorController.hpp:

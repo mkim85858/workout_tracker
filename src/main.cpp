@@ -29,16 +29,6 @@ int main(int argc, char** argv) {
 
     app.start();
 
-    // For now, simulate a few rep events so you can see output.
-    for (int i = 0; i < 50; ++i) {
-        RepEvent ev;
-        ev.ts_ms = 0;          // not used yet
-        ev.exercise_id = 1;
-        ev.delta = 1;
-        app.onRepDetected(ev);
-        std::this_thread::sleep_for(std::chrono::milliseconds(500));
-    }
-
     // Run until Ctrl+C (or systemd stop)
     while (!g_sigint.load()) {
         std::this_thread::sleep_for(std::chrono::milliseconds(200));

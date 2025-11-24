@@ -52,12 +52,12 @@ void ServoController::controlLoop() {
         queue_.pop();
         lk.unlock();
 
-        if (cmd == 2) {  // decrease angle
-            dutyNs_ = (dutyNs_ > minDutyNs_ + stepNs_) ? dutyNs_ - stepNs_ : minDutyNs_;
-        } else if (cmd == 3) {  // increase angle
-            dutyNs_ = (dutyNs_ + stepNs_ < maxDutyNs_) ? dutyNs_ + stepNs_ : maxDutyNs_;
-        } else if (cmd == 4) {  // optional center command
-            dutyNs_ = (minDutyNs_ + maxDutyNs_) / 2;
+        if (cmd == 2) {  // lowest angle
+            dutyNs_ = minDutyNs_ + (180.0f / 180.0f) * (maxDutyNs_ - minDutyNs_);
+        } else if (cmd == 3) {  // middle angle
+            dutyNs_ = minDutyNs_ + (162.5f / 180.0f) * (maxDutyNs_ - minDutyNs_);
+        } else if (cmd == 4) {  // highest angle
+            dutyNs_ = minDutyNs_ + (145.0f / 180.0f) * (maxDutyNs_ - minDutyNs_);
         } else {
             continue;  // ignore unrelated commands
         }

@@ -29,6 +29,8 @@ private:
     void controlLoop();
     void stepCW(int steps);
     void stepCCW(int steps);
+    void moveToAngle(double targetDeg);
+    double normalizeAngle(double requested) const;
 
     void setupGPIO();
     void cleanupGPIO();
@@ -44,4 +46,11 @@ private:
     std::queue<int> cmdQueue_;
     std::mutex qMutex_;
     std::condition_variable qCv_;
+
+    double currentAngleDeg_ = 0.0;
+    double desiredAngleDeg_ = 0.0;
+    static constexpr double minAngleDeg_ = 0.0;
+    static constexpr double maxAngleDeg_ = 350.0;
+    static constexpr double commandStepDeg_ = 5.0;
+    static constexpr double stepsPerDegree_ = 512.0 / 360.0;
 };

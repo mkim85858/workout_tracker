@@ -1,5 +1,4 @@
 #pragma once
-#include "inference/PoseEstimator.hpp"
 #include "control/StepperController.hpp"
 #include "control/ServoController.hpp"
 #include <memory>
@@ -49,9 +48,10 @@ private:
 
     std::unique_ptr<StepperController> stepper_;
     std::unique_ptr<ServoController> servo_;
-    // pose estimator
-    std::unique_ptr<PoseEstimator> pose_estimator_;
 
-    // state
-    std::atomic<uint32_t> rep_count_{0};
+    int port_ = 5005;
+    int server_fd_ = -1;
+    int client_fd_ = -1;
+
+    void closeServer();
 };

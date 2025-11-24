@@ -1,6 +1,10 @@
 #include "app/App.hpp"
 #include <iostream>
 #include <vector>
+#include <arpa/inet.h>
+#include <sys/socket.h>
+#include <unistd.h>
+#include <cstring>
 
 App::App() = default;
 
@@ -9,7 +13,6 @@ App::~App() {
 }
 
 void App::init() {
-    pose_estimator_ = std::make_unique<PoseEstimator>(5005);
     std::vector<unsigned int> pins = {105, 106, 41, 43};
     stepper_ = std::make_unique<StepperController>(pins);
     servo_ = std::make_unique<ServoController>("/sys/class/pwm/pwmchip0", 0);
@@ -19,7 +22,6 @@ void App::start() {
     if (running_.exchange(true)) return;
     stop_requested_ = false;
 
-    pose_estimator_->start();
     if (stepper_) stepper_->start();
     if (servo_) servo_->start();
 
@@ -32,12 +34,11 @@ void App::start() {
 void App::stop() {
     if (!running_.exchange(false)) return;
     stop_requested_ = true;
-    q_cv_.notify_all();
+    closeServer();
     if (loop_thread_.joinable()) loop_thread_.join();
     
     if (servo_) servo_->stop();
     if (stepper_) stepper_->stop();
-    if (pose_estimator_) pose_estimator_->stop();
 
     std::cout << "[app] Stopped.\n";
 }
@@ -47,56 +48,61 @@ void App::wait() {
     if (loop_thread_.joinable()) loop_thread_.join();
 }
 
-void App::onRepDetected(const RepEvent& e) {
-    // push into queue (non-blocking prototype)
-    {
-        std::lock_guard<std::mutex> lk(q_mtx_);
-        rep_queue_.push(e);
-    }
-    q_cv_.notify_one();
-}
-
-void App::dumpStatus() const {
-    std::cout << "[app] total_reps=" << rep_count_.load() << "\n";
-}
-
 void App::loopThreadFunc() {
-    // Prototype event pump:
-    // - If no events, print a heartbeat every ~2s
-    // - If events, apply to rep_count and print an update
-    auto last_heartbeat = std::chrono::steady_clock::now();
+    sockaddr_in addr{};
+    addr.sin_family = AF_INET;
+    addr.sin_addr.s_addr = INADDR_ANY;
+    addr.sin_port = htons(port_);
+
+    server_fd_ = socket(AF_INET, SOCK_STREAM, 0);
+    if (server_fd_ < 0) {
+        std::cerr << "[app] Socket creation failed\n";
+        return;
+    }
+
+    int opt = 1;
+    setsockopt(server_fd_, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt));
+
+    if (bind(server_fd_, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
+        std::cerr << "[app] Bind failed\n";
+        closeServer();
+        return;
+    }
+
+    if (listen(server_fd_, 1) < 0) {
+        std::cerr << "[app] Listen failed\n";
+        closeServer();
+        return;
+    }
+
+    std::cout << "[app] Listening on port " << port_ << "...\n";
+
     while (!stop_requested_) {
-        // Wait for event or timeout so we can also service pose commands.
-        std::unique_lock<std::mutex> lk(q_mtx_);
-        q_cv_.wait_for(lk, std::chrono::milliseconds(500),
-                       [&]{ return stop_requested_ || !rep_queue_.empty(); });
-        if (stop_requested_) break;
-
-        // Pull out any pending rep events while holding the lock.
-        std::vector<RepEvent> events;
-        while (!rep_queue_.empty()) {
-            events.push_back(rep_queue_.front());
-            rep_queue_.pop();
-        }
-        lk.unlock();
-
-        int processed = 0;
-
-        for (auto& ev : events) {
-            // Update totals and print a simple update.
-            const auto new_total = rep_count_.fetch_add(ev.delta) + ev.delta;
-            ++processed;
-            std::cout << "[app] reps +" << ev.delta << " (exercise "
-                      << ev.exercise_id << ") → total=" << new_total << "\n";
+        sockaddr_in clientAddr{};
+        socklen_t addrLen = sizeof(clientAddr);
+        client_fd_ = accept(server_fd_, (struct sockaddr*)&clientAddr, &addrLen);
+        if (client_fd_ < 0) {
+            if (stop_requested_) break;
+            std::cerr << "[app] Accept failed\n";
+            continue;
         }
 
-        // Drain pose-estimator commands irrespective of events.
-        int cmd = 0;
-        while (pose_estimator_ && pose_estimator_->getNextCommand(cmd)) {
-            ++processed;
+        std::cout << "[app] Client connected\n";
+
+        char buffer[2];
+        while (!stop_requested_) {
+            ssize_t bytes = recv(client_fd_, buffer, 1, 0);
+            if (bytes <= 0) {
+                std::cout << "[app] Client disconnected\n";
+                close(client_fd_);
+                client_fd_ = -1;
+                break;
+            }
+
+            int cmd = buffer[0] - '0';
             switch (cmd) {
-                case 0:
-                case 1:
+                case 82:
+                case 76:
                     if (stepper_) {
                         stepper_->pushCommand(cmd);
                     } else {
@@ -117,11 +123,18 @@ void App::loopThreadFunc() {
                     break;
             }
         }
+    }
 
-        auto now = std::chrono::steady_clock::now();
-        if (processed == 0 && now - last_heartbeat > std::chrono::seconds(2)) {
-            std::cout << "[app] heartbeat… reps=" << rep_count_.load() << "\n";
-            last_heartbeat = now;
-        }
+    closeServer();
+}
+
+void App::closeServer() {
+    if (client_fd_ != -1) {
+        close(client_fd_);
+        client_fd_ = -1;
+    }
+    if (server_fd_ != -1) {
+        close(server_fd_);
+        server_fd_ = -1;
     }
 }

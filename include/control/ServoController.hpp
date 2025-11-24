@@ -36,10 +36,9 @@ private:
     std::string pwmPath_;
 
     const uint32_t periodNs_ = 20000000;      // 20 ms (50 Hz)
-    const uint32_t minDutyNs_ = 1000000;      // 1 ms pulse
-    const uint32_t maxDutyNs_ = 2000000;      // 2 ms pulse
-    const uint32_t stepNs_    = 50000;        // adjust ~0.05 ms per command
-    uint32_t dutyNs_          = 1500000;      // start centered
+    const uint32_t minDutyNs_ = 500000;      // 0.5 ms pulse
+    const uint32_t maxDutyNs_ = 2500000;      // 2.5 ms pulse
+    uint32_t dutyNs_          = 2500000;      // start lowered
 
     std::thread worker_;
     std::atomic<bool> running_{false};

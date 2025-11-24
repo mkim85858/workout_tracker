@@ -11,7 +11,6 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/mkim858/workout_tracker/src/app/App.cpp" "CMakeFiles/workout-tracker.dir/src/app/App.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/app/App.cpp.o.d"
   "/home/mkim858/workout_tracker/src/control/ServoController.cpp" "CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/control/ServoController.cpp.o.d"
   "/home/mkim858/workout_tracker/src/control/StepperController.cpp" "CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.o.d"
-  "/home/mkim858/workout_tracker/src/inference/PoseEstimator.cpp" "CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o.d"
   "/home/mkim858/workout_tracker/src/main.cpp" "CMakeFiles/workout-tracker.dir/src/main.cpp.o" "gcc" "CMakeFiles/workout-tracker.dir/src/main.cpp.o.d"
   )
 

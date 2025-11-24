@@ -8,7 +8,6 @@ set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 add_executable(workout-tracker
   src/main.cpp
   src/app/App.cpp
-  src/inference/PoseEstimator.cpp
   src/control/StepperController.cpp
   src/control/ServoController.cpp
 )

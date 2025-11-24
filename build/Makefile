@@ -201,30 +201,6 @@ src/control/StepperController.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/control/StepperController.cpp.s
 .PHONY : src/control/StepperController.cpp.s
 
-src/inference/PoseEstimator.o: src/inference/PoseEstimator.cpp.o
-.PHONY : src/inference/PoseEstimator.o
-
-# target to build an object file
-src/inference/PoseEstimator.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.o
-.PHONY : src/inference/PoseEstimator.cpp.o
-
-src/inference/PoseEstimator.i: src/inference/PoseEstimator.cpp.i
-.PHONY : src/inference/PoseEstimator.i
-
-# target to preprocess a source file
-src/inference/PoseEstimator.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.i
-.PHONY : src/inference/PoseEstimator.cpp.i
-
-src/inference/PoseEstimator.s: src/inference/PoseEstimator.cpp.s
-.PHONY : src/inference/PoseEstimator.s
-
-# target to generate assembly for a file
-src/inference/PoseEstimator.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/workout-tracker.dir/build.make CMakeFiles/workout-tracker.dir/src/inference/PoseEstimator.cpp.s
-.PHONY : src/inference/PoseEstimator.cpp.s
-
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
@@ -267,9 +243,6 @@ help:
 	@echo "... src/control/StepperController.o"
 	@echo "... src/control/StepperController.i"
 	@echo "... src/control/StepperController.s"
-	@echo "... src/inference/PoseEstimator.o"
-	@echo "... src/inference/PoseEstimator.i"
-	@echo "... src/inference/PoseEstimator.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
