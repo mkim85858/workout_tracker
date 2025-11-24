@@ -101,8 +101,8 @@ void App::loopThreadFunc() {
 
             int cmd = buffer[0] - '0';
             switch (cmd) {
-                case 82:
-                case 76:
+                case 34:
+                case 28:
                     if (stepper_) {
                         stepper_->pushCommand(cmd);
                     } else {

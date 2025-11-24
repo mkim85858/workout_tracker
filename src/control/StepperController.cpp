@@ -3,7 +3,6 @@
 #include <chrono>
 #include <thread>
 #include <algorithm>
-#include <cmath>
 
 StepperController::StepperController(const std::vector<unsigned int>& gpioLines,
                                      const std::string& chipName)
@@ -51,19 +50,15 @@ void StepperController::controlLoop() {
         cmdQueue_.pop();
         lk.unlock();
 
-        double delta = 0.0;
-        if (cmd == 82) {
-            delta = -commandStepDeg_;
-        } else if (cmd == 76) {
-            delta = commandStepDeg_;
+        if (cmd == 34) {
+            std::cout << "[Stepper] Command: CW\n";
+            stepCW(stepsPerCommand_);
+        } else if (cmd == 28) {
+            std::cout << "[Stepper] Command: CCW\n";
+            stepCCW(stepsPerCommand_);
         } else {
             std::cout << "[Stepper] Unknown cmd: " << cmd << "\n";
-            continue;
         }
-
-        desiredAngleDeg_ += delta;
-        double target = normalizeAngle(desiredAngleDeg_);
-        moveToAngle(target);
     }
 }
 
@@ -104,13 +99,13 @@ void StepperController::cleanupGPIO() {
 /* ---------------- Step logic ---------------- */
 
 static const std::vector<std::vector<int>> HALFSTEP_SEQ = {
-    {1,0,0,0},
+    //{1,0,0,0},
     {1,1,0,0},
-    {0,1,0,0},
+    //{0,1,0,0},
     {0,1,1,0},
-    {0,0,1,0},
+    //{0,0,1,0},
     {0,0,1,1},
-    {0,0,0,1},
+    //{0,0,0,1},
     {1,0,0,1}
 };
 
@@ -142,46 +137,4 @@ void StepperController::stepCCW(int steps) {
 
     for (size_t j = 0; j < handles_.size(); ++j)
         gpiod_line_set_value(handles_[j], 0);
-}
-
-void StepperController::moveToAngle(double targetDeg) {
-    double diff = targetDeg - currentAngleDeg_;
-    if (std::abs(diff) < 1e-3) {
-        return;
-    }
-    int steps = static_cast<int>(std::round(std::abs(diff) * stepsPerDegree_));
-    if (steps <= 0) return;
-
-    if (diff > 0) {
-        std::cout << "[Stepper] Move +" << diff << "° (" << steps << " steps)\n";
-        stepCCW(steps);
-    } else {
-        std::cout << "[Stepper] Move " << diff << "° (" << steps << " steps)\n";
-        stepCW(steps);
-    }
-    currentAngleDeg_ = targetDeg;
-}
-
-double StepperController::normalizeAngle(double requested) const {
-    double result = requested;
-
-    while (result < minAngleDeg_ - 360.0) result += 360.0;
-    while (result > maxAngleDeg_ + 360.0) result -= 360.0;
-
-    if (result < minAngleDeg_) {
-        double wrapped = result + 360.0;
-        if (wrapped <= maxAngleDeg_) {
-            result = wrapped;
-        } else {
-            result = minAngleDeg_;
-        }
-    } else if (result > maxAngleDeg_) {
-        double wrapped = result - 360.0;
-        if (wrapped >= minAngleDeg_) {
-            result = wrapped;
-        } else {
-            result = maxAngleDeg_;
-        }
-    }
-    return std::clamp(result, minAngleDeg_, maxAngleDeg_);
 }
